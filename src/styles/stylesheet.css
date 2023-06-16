@@ -1,0 +1,11 @@
+.avatar {
+  border-radius: 50%;
+  width: 5rem;
+  margin: 1em;
+}
+
+.result_card {
+  display: flex;
+  margin: 1em;
+  align-items: center;
+}
