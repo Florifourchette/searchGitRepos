@@ -1,7 +1,7 @@
 export const getGitData = (searchTerm) =>
   fetch(
     `https://api.github.com/search/repositories?q=${
-      searchTerm || ' '
+      searchTerm || 'hello'
     }`,
     {
       method: 'GET',
