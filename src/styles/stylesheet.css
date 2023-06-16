@@ -2,10 +2,40 @@
   border-radius: 50%;
   width: 5rem;
   margin: 1em;
+  background-color: white;
 }
 
 .result_card {
   display: flex;
   margin: 1em;
   align-items: center;
+  border: solid black 1px;
+  border-radius: 15px;
+  width: 100%;
+}
+
+.result_card:hover {
+  background-color: black;
+  color: white;
+}
+
+.Github_Result_Container {
+  display: flex;
+  justify-content: space-around;
+}
+
+.Search_Result_Container {
+  width: 70%;
+}
+
+.owner_Card_Container {
+  width: 30%;
+}
+
+.owner_avatar {
+  width: 100%;
+}
+
+.owner_card_content_container {
+  text-align: center;
 }
