@@ -1,23 +1,32 @@
 import React, { useEffect, useState } from 'react';
 import { getGitData } from '../utils/RepoAPICall';
 import { List, Image, Card, CardContent } from 'semantic-ui-react';
+import { getQualityScore } from '../utils/qualityScore';
 
 const GitResults = ({ searchTerm, handleClick }) => {
   const [data, setData] = useState([]);
-
-  console.log(searchTerm);
+  // const [qualityScore, setqualityScore] = useState([]);
 
   useEffect(() => {
-    console.log(searchTerm);
     getGitData(searchTerm)
-      .then((data) => setData(data.items))
+      .then((data) =>
+        setData(
+          data.items?.map(
+            (item) =>
+              (item = {
+                ...item,
+                qualityScore: getQualityScore(item),
+              })
+          )
+        )
+      )
       .catch((error) => console.log(error));
   }, [searchTerm]);
 
   console.log(data);
 
   return (
-    <div classname="Search_Result_Container">
+    <div className="Search_Result_Container">
       <List>
         {data?.map((item) => (
           <List.Item
@@ -32,7 +41,8 @@ const GitResults = ({ searchTerm, handleClick }) => {
             />
             <List.Content>
               <List.Header>{item.name}</List.Header>
-              Language:{item.language}
+              <p>Language:{item.language}</p>
+              <p>qualityScore:{item.qualityScore}</p>
             </List.Content>
           </List.Item>
         ))}

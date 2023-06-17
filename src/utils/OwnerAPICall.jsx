@@ -2,6 +2,7 @@ export const getOwnerDetails = (ownerName) =>
   fetch(`https://api.github.com/users/${ownerName}`, {
     method: 'GET',
   })
+    .then((data) => console.log(data))
     .then((response) => {
       return response.json();
     })
