@@ -25,13 +25,16 @@ const GitResults = ({ searchTerm, handleClick }) => {
         return data?.map((item) =>
           getOwnerDetails(item)
             .then((data) => {
-              return owners.push({
-                followers: data.followers,
-                bio: data.bio,
-                created_at: data.created_at,
-                type: data.type,
-                login: data.login,
-              });
+              return setOwners([
+                ...owners,
+                {
+                  followers: data.followers,
+                  bio: data.bio,
+                  created_at: data.created_at,
+                  type: data.type,
+                  login: data.login,
+                },
+              ]);
             })
             .catch((error) => console.log(error))
         );
