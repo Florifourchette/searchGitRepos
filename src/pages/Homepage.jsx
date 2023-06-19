@@ -1,5 +1,6 @@
 import React from 'react';
 import '../styles/stylesheet.css';
+import '../styles/tabletStyleSheet.css';
 import { useState } from 'react';
 import GitResults from '../components/GitResults';
 import Searchbar from '../components/Searchbar';
@@ -9,28 +10,40 @@ import OwnerDetails from '../components/OwnerDetails';
 const Homepage = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [ownerDetails, setOwnerDetails] = useState('');
+  const [repoClicked, setRepoClicked] = useState(false);
 
   const handleClick = (ownerDetails) => {
+    setRepoClicked(true);
     getOwnerDetails(ownerDetails).then((data) =>
       setOwnerDetails(data)
     );
   };
 
   return (
-    <div>
+    <>
       <Searchbar
         searchTerm={searchTerm}
         setSearchTerm={setSearchTerm}
+        setRepoClicked={setRepoClicked}
       />
-      <div className="Github_Result_Container">
+      <div
+        className={
+          repoClicked
+            ? 'github_result_container_clicked'
+            : 'github_result_container'
+        }
+      >
+        <OwnerDetails
+          ownerDetails={ownerDetails}
+          repoClicked={repoClicked}
+        />
         <GitResults
           className="GitResults"
           searchTerm={searchTerm}
           handleClick={handleClick}
         />
-        <OwnerDetails ownerDetails={ownerDetails} />
       </div>
-    </div>
+    </>
   );
 };
 

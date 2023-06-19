@@ -1,0 +1,18 @@
+@media screen and (max-width: 1000px) {
+  #root {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+  }
+
+  .owner_card_details {
+    position: sticky;
+    top: 1em;
+    background-color: white;
+    margin: 1em auto 0 auto;
+  }
+  .result_card {
+    margin: 1em auto 1em auto;
+  }
+}
