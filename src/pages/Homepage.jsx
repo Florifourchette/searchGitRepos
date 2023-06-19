@@ -1,5 +1,6 @@
 import React from 'react';
 import '../styles/stylesheet.css';
+import '../styles/tabletStyleSheet.css';
 import { useState } from 'react';
 import GitResults from '../components/GitResults';
 import Searchbar from '../components/Searchbar';
@@ -23,6 +24,7 @@ const Homepage = () => {
       <Searchbar
         searchTerm={searchTerm}
         setSearchTerm={setSearchTerm}
+        setRepoClicked={setRepoClicked}
       />
       <div
         className={
@@ -31,12 +33,15 @@ const Homepage = () => {
             : 'github_result_container'
         }
       >
+        <OwnerDetails
+          ownerDetails={ownerDetails}
+          repoClicked={repoClicked}
+        />
         <GitResults
           className="GitResults"
           searchTerm={searchTerm}
           handleClick={handleClick}
         />
-        <OwnerDetails ownerDetails={ownerDetails} />
       </div>
     </>
   );

@@ -15,25 +15,25 @@ const GitResults = ({ searchTerm, handleClick }) => {
         setRepoData(data.items);
         return data.items;
       })
+      //use the repo data in order to get an array with only the repos owners. The array will then be used to make an API call to get the users'details
       .then((data) => {
         return data
           ?.map((item) => item.owner)
           ?.map((item) => item.login);
       })
       .then((data) => {
-        let newArray = [];
-        data?.map((item) =>
-          getOwnerDetails(item).then((data) => {
-            newArray.push({
-              followers: data.followers,
-              bio: data.bio,
-              created_at: data.created_at,
-              type: data.type,
-              login: data.login,
-            });
-            setOwners(newArray);
-            return newArray;
-          })
+        return data?.map((item) =>
+          getOwnerDetails(item)
+            .then((data) => {
+              return owners.push({
+                followers: data.followers,
+                bio: data.bio,
+                created_at: data.created_at,
+                type: data.type,
+                login: data.login,
+              });
+            })
+            .catch((error) => console.log(error))
         );
       })
       .catch((error) => console.log(error));
@@ -60,15 +60,15 @@ const GitResults = ({ searchTerm, handleClick }) => {
             key={newData.indexOf(item)}
             onClick={() => handleClick(item.owner.login)}
           >
-            <img
-              className="avatar"
-              avatar
-              src={item.owner.avatar_url}
-            />
+            <img className="avatar" src={item.owner.avatar_url} />
             <div className="result-card-text">
               <h3>{item.name}</h3>
-              <p>Language:{item.language}</p>
-              <p>qualityScore:{item.qualityScore}</p>
+              {item.language ? (
+                <p>Language: {item.language}</p>
+              ) : (
+                <></>
+              )}
+              <p>qualityScore: {item.qualityScore}</p>
             </div>
           </div>
         ))}

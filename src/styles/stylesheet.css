@@ -7,7 +7,7 @@ body {
 }
 
 #root {
-  width: 60%;
+  width: 80%;
   display: flex;
   flex-direction: column;
 }
@@ -22,7 +22,8 @@ body {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  padding-left: 5rem;
+  align-self: flex-start;
+  width: 100%;
 }
 
 .searchBar {
@@ -35,27 +36,39 @@ body {
 
 .owner_card_details {
   position: fixed;
-  bottom: 55vh;
-  right: 55vh;
+  bottom: 45vh;
+  right: 20vw;
   border: solid black 1px;
   padding: 2em;
   border-radius: 15px;
+  width: 20vw;
+  min-width: 10em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.owner_card_content_container {
+  text-align: center;
+  width: 80%;
+  margin-top: 1em;
 }
 
 .avatar {
   border-radius: 50%;
-  width: 5rem;
+  width: 5em;
   margin: 1em;
   background-color: white;
 }
 
 .result_card {
   display: flex;
-  margin: 1em;
   align-items: center;
   border: solid black 1px;
   border-radius: 15px;
-  width: 20rem;
+  width: 30vw;
+  min-width: 15em;
+  margin: 1em;
 }
 
 .result_card:hover {
@@ -63,23 +76,6 @@ body {
   color: white;
 }
 
-.Github_Result_Container {
-  display: flex;
-  justify-content: space-around;
-}
-
-.Search_Result_Container {
-  width: 70%;
-}
-
-.owner_Card_Container {
-  width: 30%;
-}
-
 .owner_avatar {
-  width: 100%;
-}
-
-.owner_card_content_container {
-  text-align: center;
+  width: 50%;
 }

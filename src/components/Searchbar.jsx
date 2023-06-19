@@ -2,8 +2,9 @@ import React from 'react';
 import { useState } from 'react';
 import SearchBar from '@mkyy/mui-search-bar';
 
-const Searchbar = ({ searchTerm, setSearchTerm }) => {
+const Searchbar = ({ searchTerm, setSearchTerm, setRepoClicked }) => {
   const handleSearch = (newValue) => {
+    setRepoClicked(false);
     setSearchTerm(newValue);
   };
 
