@@ -51,30 +51,28 @@ const GitResults = ({ searchTerm, handleClick }) => {
   }, [owners]);
 
   return (
-    <div className="Search_Result_Container">
-      <List>
-        {newData
-          ?.sort((a, b) => b.qualityScore - a.qualityScore)
-          ?.map((item) => (
-            <List.Item
-              className="result_card"
-              key={newData.indexOf(item)}
-              onClick={() => handleClick(item.owner.login)}
-            >
-              <Image
-                className="avatar"
-                avatar
-                src={item.owner.avatar_url}
-              />
-              <List.Content>
-                <List.Header>{item.name}</List.Header>
-                <p>Language:{item.language}</p>
-                <p>qualityScore:{item.qualityScore}</p>
-              </List.Content>
-            </List.Item>
-          ))}
-      </List>
-    </div>
+    <>
+      {newData
+        ?.sort((a, b) => b.qualityScore - a.qualityScore)
+        ?.map((item) => (
+          <div
+            className="result_card"
+            key={newData.indexOf(item)}
+            onClick={() => handleClick(item.owner.login)}
+          >
+            <img
+              className="avatar"
+              avatar
+              src={item.owner.avatar_url}
+            />
+            <div className="result-card-text">
+              <h3>{item.name}</h3>
+              <p>Language:{item.language}</p>
+              <p>qualityScore:{item.qualityScore}</p>
+            </div>
+          </div>
+        ))}
+    </>
   );
 };
 

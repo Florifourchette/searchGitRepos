@@ -13,6 +13,7 @@ const Searchbar = ({ searchTerm, setSearchTerm }) => {
         value={searchTerm}
         onChange={(newValue) => handleSearch(newValue)}
         onSearch={handleSearch}
+        className="searchBar"
       />
     </>
   );

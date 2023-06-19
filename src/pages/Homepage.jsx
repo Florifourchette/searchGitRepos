@@ -9,20 +9,28 @@ import OwnerDetails from '../components/OwnerDetails';
 const Homepage = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [ownerDetails, setOwnerDetails] = useState('');
+  const [repoClicked, setRepoClicked] = useState(false);
 
   const handleClick = (ownerDetails) => {
+    setRepoClicked(true);
     getOwnerDetails(ownerDetails).then((data) =>
       setOwnerDetails(data)
     );
   };
 
   return (
-    <div>
+    <>
       <Searchbar
         searchTerm={searchTerm}
         setSearchTerm={setSearchTerm}
       />
-      <div className="Github_Result_Container">
+      <div
+        className={
+          repoClicked
+            ? 'github_result_container_clicked'
+            : 'github_result_container'
+        }
+      >
         <GitResults
           className="GitResults"
           searchTerm={searchTerm}
@@ -30,7 +38,7 @@ const Homepage = () => {
         />
         <OwnerDetails ownerDetails={ownerDetails} />
       </div>
-    </div>
+    </>
   );
 };
 

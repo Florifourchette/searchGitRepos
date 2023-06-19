@@ -1,0 +1,10 @@
+@media screen and (max-width: 1250px) {
+  .owner_card_details {
+    position: relative;
+    bottom: 55vh;
+    right: 55vh;
+    border: solid black 1px;
+    padding: 2em;
+    border-radius: 15px;
+  }
+}

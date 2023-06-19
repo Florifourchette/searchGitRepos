@@ -1,3 +1,47 @@
+body {
+  margin: auto;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#root {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+}
+
+.github_result_container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.github_result_container_clicked {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  padding-left: 5rem;
+}
+
+.searchBar {
+  width: 30%;
+  align-self: center;
+  border: solid black 1px;
+  margin-top: 2em;
+  margin-bottom: 2em;
+}
+
+.owner_card_details {
+  position: fixed;
+  bottom: 55vh;
+  right: 55vh;
+  border: solid black 1px;
+  padding: 2em;
+  border-radius: 15px;
+}
+
 .avatar {
   border-radius: 50%;
   width: 5rem;
@@ -11,7 +55,7 @@
   align-items: center;
   border: solid black 1px;
   border-radius: 15px;
-  width: 100%;
+  width: 20rem;
 }
 
 .result_card:hover {
