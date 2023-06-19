@@ -2,7 +2,6 @@ import React from 'react';
 import { Card, Icon, Image } from 'semantic-ui-react';
 
 const OwnerDetails = ({ ownerDetails }) => {
-  console.log(ownerDetails);
   return (
     <div className="owner_Card_Container">
       <Card>
