@@ -2,7 +2,7 @@ export const getGitData = (searchTerm) =>
   fetch(
     `https://api.github.com/search/repositories?q=${
       searchTerm || 'hello'
-    }&per_page=5`,
+    }&per_page=8`,
     {
       method: 'GET',
     }

@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { getGitData } from '../utils/RepoAPICall';
-import { List, Image, Card, CardContent } from 'semantic-ui-react';
-import { getQualityScore } from '../utils/qualityScore';
 import { getOwnerDetails } from '../utils/OwnerAPICall';
+import { getOwnerQualityScore } from '../utils/OwnerQualityScore';
+import { getRepoQualityScore } from '../utils/RepoQualityScore';
 
 const GitResults = ({ searchTerm, handleClick }) => {
   const [newData, setNewData] = useState([]);
   const [Repodata, setRepoData] = useState([]);
   const [owners, setOwners] = useState([]);
+  let [onwerQualityScore, setOwnerQualityScore] = useState([]);
 
   useEffect(() => {
     getGitData(searchTerm)
@@ -43,11 +44,24 @@ const GitResults = ({ searchTerm, handleClick }) => {
   }, [searchTerm]);
 
   useEffect(() => {
+    getOwnerQualityScore(owners, onwerQualityScore);
+    //All the data has been pushed into onwerQualityScore so the 'irrelevant'data should be filterred out in order to keep the valid data
+    onwerQualityScore = onwerQualityScore.filter(
+      (item) => item.owner_login !== undefined
+    );
     setNewData(
       Repodata?.map((item) => {
+        const RepoQS = getRepoQualityScore(item);
+        const ownerfiltered = onwerQualityScore?.filter(
+          (QS) => QS.owner_login === item.owner.login
+        );
         return (item = {
           ...item,
-          qualityScore: getQualityScore(item, owners),
+          //if the owner quality score does not come then take the repo quality score only
+          quality_score: Math.round(
+            (ownerfiltered[0]?.ownerQualityScore + RepoQS) / 2 ||
+              RepoQS
+          ),
         });
       })
     );
@@ -56,7 +70,7 @@ const GitResults = ({ searchTerm, handleClick }) => {
   return (
     <>
       {newData
-        ?.sort((a, b) => b.qualityScore - a.qualityScore)
+        ?.sort((a, b) => b.quality_score - a.quality_score)
         ?.map((item) => (
           <div
             className="result_card"
@@ -71,7 +85,7 @@ const GitResults = ({ searchTerm, handleClick }) => {
               ) : (
                 <></>
               )}
-              <p>qualityScore: {item.qualityScore}</p>
+              <p>qualityScore: {item.quality_score}</p>
             </div>
           </div>
         ))}
