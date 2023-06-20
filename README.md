@@ -1,5 +1,7 @@
 # searchGitRepos
 
+Please use React and then, npm install and npm run dev
+
 the quality score has been calculated as follow: 
 
 quality_score = (owner_quality_score+repos_quality_score)/2
